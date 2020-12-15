@@ -22,9 +22,7 @@ router.post("/signUp", (req, res, next) => {
 
 router.get("/checkCode", (req, res, next) => {
   rToken = req.cookies["rTok"];
-  console.log("checkCode rT:", rToken);
   resp = verifyRefreshToken(rToken);
-  console.log("verify Rt resp", resp);
   if (resp.verify == true) {
     aTok = createAccessToken(resp.result);
     rTok = createRefreshToken(resp.result);
@@ -38,7 +36,6 @@ router.get("/checkCode", (req, res, next) => {
 
 
 router.post("/checkUsername",(req, res, next)=> {
-  console.log(req.body)
   User.findOne({username:req.body.username})
   .then((user)=> {
     if(user) res.json({success:false})

@@ -2,7 +2,6 @@ var User = require('../models/users')
 var {createAccessToken,createRefreshToken,verifyAccessToken,verifyRefreshToken} = require('../services/jwt')
 
 exports.authenticateUser =(userData, res, next) => {
-    console.log(typeof(userData.username)!='number')
     if(typeof(userData.username)!='number') {
             User.findOne({username:userData.username, password:userData.password})
             .then((user)=>{
