@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var Products = require('../models/products')
+var jwt = require('../services/jwt')
 
 router.route('/')
-.get(async(req, res, next)=>{
+.get(jwt.verifyAccess, async(req, res, next)=>{
    var products = await Products.find({})
    res.json(products);
 })
