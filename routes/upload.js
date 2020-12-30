@@ -47,6 +47,7 @@ uploadRouter.route('/profile')
 uploadRouter.route('/product')
 .post(uploadProduct.single('image'),
 (req,res,next)=>{
+                console.log(req.file)
                 res.stausCode=200;
                 res.setHeader('Content-Type','application/json');
                 res.json({status:"image Uploaded"});
